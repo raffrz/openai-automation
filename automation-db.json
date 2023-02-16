@@ -1,0 +1,34 @@
+[
+    {
+       "option":"Ligar a TV da sala",
+       "request":"http://localhost:8080/devices/tv-sala/switch"
+    },
+    {
+       "option":"Ligar a TV do quarto",
+       "request":"http://localhost:8080/devices/tv-quarto/switch"
+    },
+    {
+       "option":"Ligar as luzes da cozinha",
+       "request":"http://localhost:8080/devices/luzes-cozinha/switch"
+    },
+    {
+       "option":"Ligar as luzes da sala",
+       "request":"http://localhost:8080/devices/luzes-sala/switch"
+    },
+    {
+       "option":"Ligar o escritório",
+       "request":"http://localhost:8080/devices/escritorio/switch"
+    },
+    {
+       "option":"Ligar para a polícia",
+       "request":"http://localhost:8080/actions/chamar-policia/"
+    },
+    {
+       "option":"Ligar para a emergência",
+       "request":"http://localhost:8080/devices/chamar-emergencia/"
+    },
+    {
+      "option":"Ligar para os bombeiros",
+      "request":"http://localhost:8080/devices/chamar-emergencia/"
+   }
+ ]
