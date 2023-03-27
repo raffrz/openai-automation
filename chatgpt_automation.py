@@ -1,12 +1,15 @@
 import os
 import requests
+import json
 import json_reader
+from mic_service import MicService
 
 def main():
   # Carrega os comandos que serão fornecidos ao ChatGPT
   commands = load_commands()
   # Solicita o comando que será enviado ao ChatGPT para que ele escolha uma opcão
-  user_command = input("Escreva o comando:")
+  mic_service = MicService()
+  user_command = mic_service.listen_audio()
   # Faz a chamada ao ChatGPT
   chatgpt_response = execute_chatgpt_request(commands, user_command)
   # Obtem a opcao selecionada pelo ChatGPT
@@ -69,13 +72,16 @@ def execute_devices_request(command) -> requests.Response:
     "Authorization": f"Bearer {devices_api_key}"
   }
   device_endpoint = command['request']
+  data = {
+    "command": command['command']
+  }
   print(f'comunicando com o dispositivo no endpoint {device_endpoint}')
-  # response = requests.post(url=device_endpoint, headers=headers)
+  response = requests.post(url=device_endpoint, headers=headers, data=json.dumps(data))
 
-  # if (response.status_code == 200):
-  #   print('comando enviado ao dispositivo com sucesso')
-  # else:
-  #   print(f'nao foi possivel se comunicar com o disposivo status_code={response.status_code}')
+  if (response.status_code == 200):
+    print('comando enviado ao dispositivo com sucesso')
+  else:
+    print(f'nao foi possivel se comunicar com o disposivo status_code={response.status_code}')
 
 if (__name__ == '__main__'):
   main()
